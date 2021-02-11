@@ -1,0 +1,17 @@
+.Instructions {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  width: 80%;
+}
+
+.Instructions-title {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.Instructions-para {
+  margin-bottom: 0.5rem;
+}

@@ -1,0 +1,18 @@
+.Header {
+  margin: 3rem 1.5rem;
+  font-size: 1.5rem;
+}
+
+.Header-title {
+  text-align: center;
+}
+
+.Header-scores {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.Header-score {
+  font-size: 2.2rem;
+}
