@@ -77,6 +77,9 @@ const GameBoard = ({ score, setScore, highscore, setHighscore }) => {
     if (unpicked.some((char) => char.name === clicked)) {
       setScore(score + 1);
       setUnpicked(unpicked.filter((char) => char.name !== clicked));
+      if (unpicked.length < 1) {
+        resetGame();
+      }
     } else {
       console.log(`${clicked} has been clicked before!`);
       resetGame();
