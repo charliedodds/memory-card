@@ -10,7 +10,12 @@ const MemoryCardGame = () => {
   return (
     <>
       <Header score={score} highscore={highscore} />
-      <GameBoard setScore={setScore} setHighscore={setHighscore} />
+      <GameBoard
+        score={score}
+        setScore={setScore}
+        highscore={highscore}
+        setHighscore={setHighscore}
+      />
       <Instructions />
     </>
   );

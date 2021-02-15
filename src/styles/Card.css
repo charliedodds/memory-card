@@ -1,0 +1,10 @@
+.Card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Card-name {
+  font-size: 1.8rem;
+}
