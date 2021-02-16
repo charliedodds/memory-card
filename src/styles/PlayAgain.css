@@ -1,0 +1,11 @@
+.PlayAgain {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  font-family: inherit;
+  color: inherit;
+  background-color: #eeeeee15;
+  border: 2px solid #eee;
+  border-radius: 1234px;
+  margin: 2rem;
+}

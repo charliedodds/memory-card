@@ -1,0 +1,10 @@
+.LoseBox {
+  margin: 3rem;
+  text-align: center;
+}
+
+.LoseBox-clicked {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}

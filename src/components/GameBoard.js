@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Card from './Card';
 import WinBox from './WinBox';
+import LoseBox from './LoseBox';
 
 import '../styles/GameBoard.css';
 
@@ -27,8 +28,6 @@ const generateRandomCharArray = (firstArr, secondArr) => {
     array[2] &&
     (array[0] === array[1] || array[0] === array[2] || array[1] === array[2])
   ) {
-    console.log('DUPLICATION');
-    console.log(array);
     array = generateRandomCharArray(firstArr, secondArr);
   }
   if (firstArr.indexOf(undefined) < 0 && secondArr.indexOf(undefined) < 0) {
@@ -41,6 +40,7 @@ const GameBoard = ({ score, setScore, highscore, setHighscore }) => {
   const [allChars, setAllChars] = useState([]);
   const [unpicked, setUnpicked] = useState([]);
   const [displayChars, setDisplayChars] = useState([]);
+  const [alreadyClicked, setAlreadyClicked] = useState('');
 
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
@@ -58,25 +58,11 @@ const GameBoard = ({ score, setScore, highscore, setHighscore }) => {
         setUnpicked([...data]);
       })
       .catch((err) => console.error(err));
-    console.log('end of mount');
   }, []);
 
   useEffect(() => {
     setDisplayChars(generateRandomCharArray(unpicked, allChars));
-    console.log(unpicked);
   }, [unpicked]);
-
-  // unpicked character array (UCA)
-  // all characters array (ACA)
-  // select 1 from UCA
-  // select 2 from ACA
-  // if any picked from ACA are duplicates, repeat pick from ACA
-  // create cards from selected characters
-  // on card click =>
-  //   if clicked NOT in UCA => GAMEOVER (reset score, if score > highscore, highscore = score)
-  //   else remove clicked from UCA
-  //        score++
-  //        repick 3 characters
 
   const resetGame = () => {
     if (score > highscore) {
@@ -92,22 +78,21 @@ const GameBoard = ({ score, setScore, highscore, setHighscore }) => {
       setScore(score + 1);
       setUnpicked(unpicked.filter((char) => char.name !== clicked));
     } else {
-      console.log(`${clicked} has been clicked before!`);
+      setAlreadyClicked(clicked);
       resetGame();
     }
-    // if clicked is in unpicked
-    //    score++
-    //    filter unpicked to remove clicked
-    // else gameover
   };
 
   const handleResetClick = () => {
     resetGame();
+    setAlreadyClicked('');
   };
 
   return (
     <main className='GameBoard'>
-      {unpicked.length === 0 ? (
+      {alreadyClicked ? (
+        <LoseBox clicked={alreadyClicked} handleResetClick={handleResetClick} />
+      ) : unpicked.length === 0 ? (
         <WinBox handleResetClick={handleResetClick} />
       ) : displayChars[0] === undefined ||
         displayChars[1] === undefined ||
