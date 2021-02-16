@@ -77,9 +77,6 @@ const GameBoard = ({ score, setScore, highscore, setHighscore }) => {
     if (unpicked.some((char) => char.name === clicked)) {
       setScore(score + 1);
       setUnpicked(unpicked.filter((char) => char.name !== clicked));
-      if (unpicked.length < 1) {
-        resetGame();
-      }
     } else {
       console.log(`${clicked} has been clicked before!`);
       resetGame();
@@ -90,9 +87,20 @@ const GameBoard = ({ score, setScore, highscore, setHighscore }) => {
     // else gameover
   };
 
+  const handleResetClick = () => {
+    resetGame();
+  };
+
   return (
     <main className='GameBoard'>
-      {displayChars[2] === undefined ? (
+      {unpicked.length === 0 ? (
+        <>
+          <p>GAME OVER</p>
+          <button onClick={handleResetClick}>Restart game</button>
+        </>
+      ) : displayChars[0] === undefined ||
+        displayChars[1] === undefined ||
+        displayChars[2] === undefined ? (
         <p>Loading...</p>
       ) : (
         displayChars.map((char) => (
