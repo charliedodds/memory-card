@@ -9,6 +9,16 @@ const getChar = (arr) => {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
+const shuffleArr = (arr) => {
+  let shuffledArr = [...arr];
+  for (let i = shuffledArr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    // pick random array index and swap values
+    [shuffledArr[i], shuffledArr[j]] = [shuffledArr[j], shuffledArr[i]];
+  }
+  return shuffledArr;
+};
+
 const generateRandomCharArray = (firstArr, secondArr) => {
   let array = [getChar(firstArr), getChar(secondArr), getChar(secondArr)];
   while (
@@ -20,6 +30,9 @@ const generateRandomCharArray = (firstArr, secondArr) => {
     console.log('DUPLICATION');
     console.log(array);
     array = generateRandomCharArray(firstArr, secondArr);
+  }
+  if (firstArr.indexOf(undefined) < 0 && secondArr.indexOf(undefined) < 0) {
+    array = shuffleArr(array);
   }
   return array;
 };
