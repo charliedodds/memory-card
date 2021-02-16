@@ -1,5 +1,13 @@
 .GameBoard {
+  margin-top: 6rem;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+}
+
+@media screen and (min-width: 1439.98px) {
+  .GameBoard {
+    width: 66%;
+    margin: 6rem auto;
+  }
 }

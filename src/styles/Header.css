@@ -8,11 +8,23 @@
 }
 
 .Header-scores {
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
   display: flex;
   justify-content: space-evenly;
 }
 
 .Header-score {
   font-size: 2.2rem;
+}
+
+@media screen and (min-width: 767.98px) {
+  .Header {
+    font-size: 2rem;
+  }
+  .Header-scores {
+    margin-top: 2.5rem;
+  }
+  .Header-score {
+    font-size: 2.8rem;
+  }
 }

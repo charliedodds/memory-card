@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Card from './Card';
+import WinBox from './WinBox';
 
 import '../styles/GameBoard.css';
 
@@ -94,10 +95,7 @@ const GameBoard = ({ score, setScore, highscore, setHighscore }) => {
   return (
     <main className='GameBoard'>
       {unpicked.length === 0 ? (
-        <>
-          <p>GAME OVER</p>
-          <button onClick={handleResetClick}>Restart game</button>
-        </>
+        <WinBox handleResetClick={handleResetClick} />
       ) : displayChars[0] === undefined ||
         displayChars[1] === undefined ||
         displayChars[2] === undefined ? (
